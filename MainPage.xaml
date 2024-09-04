@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KeroFruits.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="5"
+            HorizontalOptions="Center">
+            <Frame HeightRequest="250"
+                   WidthRequest="250"
+                   CornerRadius="125"
+                   HorizontalOptions="Center"
+                   IsClippedToBounds="True"
+                   Padding="0"
+                   BorderColor="Gray"
+                   Margin="0,0,0,0">
+
+                <Image
+                    Aspect="AspectFit"
+                    Source="kero.jpg"
+                    SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                    HeightRequest="250"
+                    WidthRequest="250"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center" />
+            </Frame>
+            <Label HorizontalOptions="Center" FontSize="50" Text="Kerolous Sabri"/>
+            <Label FontAttributes="Bold" HorizontalOptions="Center" Text="A Juice Application"/>
+
+            <HorizontalStackLayout Spacing="10">
+                <ImageButton x:Name="Clients" Clicked="Clients_Clicked" WidthRequest="200" HeightRequest="200" Source="clients.png"/>
+                <ImageButton x:Name="Reservations" Clicked="Reservations_Clicked" WidthRequest="300" HeightRequest="300" Source="reservations.png"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KeroFruits.View.Reservations"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="Reservations">
+    <Grid Margin="30" ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
+        <VerticalStackLayout Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Spacing="10">
+
+            <Picker
+                ItemsSource="{Binding Clients}" 
+                ItemDisplayBinding ="{Binding LastName}" 
+                SelectedItem="{Binding ClientSelection}"
+                WidthRequest="250"
+                HeightRequest="50"
+                HorizontalOptions="Start"
+             >
+                <Picker.Behaviors>
+                    <toolkit:EventToCommandBehavior
+                        EventName="SelectedIndexChanged"
+                        Command="{Binding getReservationsCommand}"
+                        />
+                </Picker.Behaviors>
+            </Picker>
+            
+            <Picker
+                    ItemsSource="{Binding ReservationsCol}" 
+                    ItemDisplayBinding ="{Binding Date}" 
+                    SelectedItem="{Binding ReservationSelectionCol}"
+                    WidthRequest="250"
+                    HeightRequest="50"
+                    HorizontalOptions="Start"  
+                 />
+            
+            <Label Text="Countity:"/>
+            <Entry IsReadOnly="True" Placeholder="Countity" Text="{Binding ReservationSelectionCol.Quantity}"/>
+
+            <Label Text="Date:"/>
+            <Entry IsReadOnly="True" Placeholder="Date" Text="{Binding ReservationSelectionCol.Date}"/>
+
+            <Label Text="DeliveryEffectifDate:"/>
+            <Entry IsReadOnly="True" Placeholder="DeliveryEffectifDate" Text="{Binding ReservationSelectionCol.DeliveryEffectifDate}"/>
+
+            <Label Text="EstimatedDate:"/>
+            <Entry IsReadOnly="True" Placeholder="EstimatedDate" Text="{Binding ReservationSelectionCol.EstimatedDate}"/>
+
+            <Label Text="EffectifLitresReceived:"/>
+            <Entry IsReadOnly="True" Placeholder="EffectifLitresReceived" Text="{Binding ReservationSelectionCol.EffectifLitresReceived}"/>
+
+            <Button Command="{Binding SaveAllCommand}" Text="Save"/>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Spacing="10">
+            <Label Text="Countity:"/>
+            <Entry Placeholder="Countity" Text="{Binding NewreservationSelection.Quantity}">
+                <Entry.Behaviors>
+                    <toolkit:EventToCommandBehavior
+                        EventName="TextChanged"
+                        Command="{Binding CalculateCommand}" />
+                </Entry.Behaviors>
+            </Entry>
+
+            <Label Text="Date:"/>
+            <Entry Placeholder="Date" Text="{Binding NewreservationSelection.Date}"/>
+
+            <Label Text="DeliveryEffectifDate:"/>
+            <Entry Placeholder="DeliveryEffectifDate" Text="{Binding NewreservationSelection.DeliveryEffectifDate}"/>
+
+            <Label Text="EstimatedDate:"/>
+            <Entry Placeholder="EstimatedDate" Text="{Binding NewreservationSelection.EstimatedDate}"/>
+
+            <Label Text="EffectifLitresReceived:"/>
+            <Entry IsReadOnly="True" Placeholder="EffectifLitresReceived" Text="{Binding NewreservationSelection.EffectifLitresReceived}"/>
+
+            <Picker
+                ItemsSource="{Binding Clients}" 
+                ItemDisplayBinding ="{Binding LastName}" 
+                SelectedItem="{Binding SelectedclientSelection}"
+                WidthRequest="250"
+                HeightRequest="50"
+                HorizontalOptions="Start" 
+             />
+
+            <HorizontalStackLayout Spacing="10">
+                <Button Command="{Binding CalculateCommand}" Text="Calc"/>
+                <Button WidthRequest="100" Command="{Binding AddReservationCommand}" Text="Add"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
